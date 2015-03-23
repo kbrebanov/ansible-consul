@@ -1,2 +1,9 @@
 ---
 # vars file for consul
+
+consul_url: https://dl.bintray.com/mitchellh/consul/{{ consul_version }}_linux_amd64.zip
+consul_download_dir: /root
+consul_install_dir: /opt/consul
+consul_install_dir_owner: root
+consul_install_dir_group: root
+consul_install_dir_mode: "0755"

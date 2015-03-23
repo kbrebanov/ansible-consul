@@ -1,2 +1,36 @@
 ---
 # tasks file for consul
+
+- name: Include distribution specific variables
+  include_vars: "{{ ansible_distribution }}.yml"
+  tags: consul
+
+- include: CentOS.yml
+  when: ansible_distribution == "CentOS"
+  tags: consul
+
+- include: Ubuntu.yml
+  when: ansible_distribution == "Ubuntu"
+  tags: consul
+
+- name: Download Consul
+  get_url: >
+    url={{ consul_url }}
+    dest={{ consul_download_dir }}/consul.zip
+    sha256sum={{ consul_sha256sum }}
+  tags: consul
+
+- name: Create Consule installation directory
+  file: >
+    path={{ consul_install_dir }}
+    owner={{ consul_install_dir_owner }}
+    group={{ consul_install_dir_group }}
+    mode={{ consul_install_dir_mode }}
+    state=directory
+  tags: consul
+
+- name: Unzip Consul to installation directory
+  command: unzip {{ consul_download_dir }}/consul.zip -d {{ consul_install_dir }}
+  args:
+    creates: "{{ consul_install_dir }}/consul"
+  tags: consul
