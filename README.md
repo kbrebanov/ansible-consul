@@ -15,8 +15,8 @@ Role Variables
 
 | Name             | Default                                                          | Description                  |
 |------------------|------------------------------------------------------------------|------------------------------|
-| consul_version   | 0.5.1                                                            | Version of Consul to install |
-| consul_sha256sum | 967ad75865b950698833eaf26415ba48d8a22befb5d4e8c77630ad70f251b100 | SHA 256 checksum of package  |
+| consul_version   | 0.5.2                                                            | Version of Consul to install |
+| consul_sha256sum | 171cf4074bfca3b1e46112105738985783f19c47f4408377241b868affa9d445 | SHA 256 checksum of package  |
 
 Dependencies
 ------------
