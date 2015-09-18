@@ -1,7 +1,7 @@
 consul
 =======
 
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-kbrebanov.consul-660198.svg)](https://galaxy.ansible.com/list#/roles/3300)
+[![Ansible Role](https://img.shields.io/ansible/role/3300.svg)](https://galaxy.ansible.com/list#/roles/3300)
 
 Installs Consul
 
