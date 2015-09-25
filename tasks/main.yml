@@ -20,15 +20,6 @@
     sha256sum={{ consul_sha256sum }}
   tags: consul
 
-- name: Create Consule installation directory
-  file: >
-    path={{ consul_install_dir }}
-    owner={{ consul_install_dir_owner }}
-    group={{ consul_install_dir_group }}
-    mode={{ consul_install_dir_mode }}
-    state=directory
-  tags: consul
-
 - name: Unzip Consul to installation directory
   command: unzip {{ consul_download_dir }}/consul.zip -d {{ consul_install_dir }}
   args:
