@@ -25,3 +25,12 @@
   args:
     creates: "{{ consul_install_dir }}/consul"
   tags: consul
+
+- name: Create Consul configuration directory
+  file: >
+    path={{ consul_config_dir }}
+    owner=root
+    group=root
+    mode=0755
+    state=directory
+  tags: nomad

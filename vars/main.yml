@@ -4,3 +4,4 @@
 consul_url: https://dl.bintray.com/mitchellh/consul/{{ consul_version }}_linux_amd64.zip
 consul_download_dir: /root
 consul_install_dir: /usr/local/bin
+consul_config_dir: /etc/consul.d
