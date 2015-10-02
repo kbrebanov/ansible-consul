@@ -33,7 +33,7 @@
     group=root
     mode=0755
     state=directory
-  tags: nomad
+  tags: consul
 
 - include: webui.yml
   when: consul_webui
