@@ -13,6 +13,20 @@
   when: ansible_distribution == "Ubuntu"
   tags: consul
 
+- name: Create Consul group
+  group: name={{ consul_group }} system=yes state=present
+  tags: consul
+
+- name: Create Consul user
+  user: >
+    name={{ consul_user }}
+    shell=/bin/false
+    createhome=no
+    group={{ consul_group }}
+    system=yes
+    state=present
+  tags: consul
+
 - name: Download Consul
   get_url: >
     url={{ consul_url }}

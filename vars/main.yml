@@ -7,3 +7,5 @@ consul_download_dir: /root
 consul_install_dir: /usr/local/bin
 consul_config_dir: /etc/consul.d
 consul_webui_install_dir: /opt/consul-webui
+consul_user: consul
+consul_group: consul
