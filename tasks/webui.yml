@@ -1,0 +1,30 @@
+---
+# tasks file for consul webui
+
+- name: Download Consul webui
+  get_url: >
+    url={{ consul_webui_url }}
+    dest={{ consul_download_dir }}/consul-webui.zip
+    sha256sum={{ consul_webui_sha256sum }}
+  tags:
+    - consul
+    - consul-webui
+
+- name: Create Consul webui installation directory
+  file: >
+    path={{ consul_webui_install_dir }}
+    owner=root
+    group=root
+    mode=0755
+    state=directory
+  tags:
+    - consul
+    - consul-webui
+
+- name: Unzip Consul webui to installation directory
+  command: unzip {{ consul_download_dir }}/consul-webui.zip -d {{ consul_webui_install_dir }}
+  args:
+    creates: "{{ consul_webui_install_dir }}/dist/index.html"
+  tags:
+    - consul
+    - consul-webui
