@@ -1,0 +1,69 @@
+{
+{% if consul_checks %}
+{% for check in consul_checks %}
+{% if not loop.last %}
+  "check": {
+{% if check.id is defined %}
+    "id": "{{ check.id }}",
+{% endif %}
+{% if check.notes is defined %}
+    "notes": "{{ check.notes }}",
+{% endif %}
+{% if check.token is defined %}
+    "token": "{{ check.token }}",
+{% endif %}
+{% if check.script is defined %}
+    "script": "{{ check.script }}",
+{% endif %}
+{% if check.http is defined %}
+    "http": "{{ check.http }}",
+{% endif %}
+{% if check.interval is defined %}
+    "interval": "{{ check.interval }}",
+{% endif %}
+{% if check.timeout is defined %}
+    "timeout": "{{ check.timeout }}",
+{% endif %}
+{% if check.ttl is defined %}
+    "ttl": "{{ check.ttl }}",
+{% endif %}
+{% if check.service_id is defined %}
+    "service_id": "{{ check.service_id }}",
+{% endif %}
+    "name": "{{ check.name }}"
+  },
+{% else %}
+  "check": {
+{% if check.id is defined %}
+    "id": "{{ check.id }}",
+{% endif %}
+{% if check.notes is defined %}
+    "notes": "{{ check.notes }}",
+{% endif %}
+{% if check.token is defined %}
+    "token": "{{ check.token }}",
+{% endif %}
+{% if check.script is defined %}
+    "script": "{{ check.script }}",
+{% endif %}
+{% if check.http is defined %}
+    "http": "{{ check.http }}",
+{% endif %}
+{% if check.interval is defined %}
+    "interval": "{{ check.interval }}",
+{% endif %}
+{% if check.timeout is defined %}
+    "timeout": "{{ check.timeout }}",
+{% endif %}
+{% if check.ttl is defined %}
+    "ttl": "{{ check.ttl }}",
+{% endif %}
+{% if check.service_id is defined %}
+    "service_id": "{{ check.service_id }}",
+{% endif %}
+    "name": "{{ check.name }}"
+  }
+{% endif %}
+{% endfor %}
+{% endif %}
+}

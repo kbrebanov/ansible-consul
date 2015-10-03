@@ -1,0 +1,61 @@
+{
+{% if consul_services %}
+{% for service in consul_services %}
+{% if not loop.last %}
+  "service": {
+{% if service.id is defined %}
+    "id": "{{ service.id }}",
+{% endif %}
+{% if service.tags is defined %}
+    "tags": [
+{% for tag in service.tags %}
+{% if not loop.last %}
+      "{{ tag }}",
+{% else %}
+      "{{ tag }}"
+{% endif %}
+{% endfor %}
+    ],
+{% endif %}
+{% if service.address is defined %}
+    "address": "{{ service.address }}",
+{% endif %}
+{% if service.port is defined %}
+    "port": {{ service.port }},
+{% endif %}
+{% if service.token is defined %}
+    "token": "{{ service.token }}",
+{% endif %}
+    "name": "{{ service.name }}"
+  },
+{% else %}
+  "service": {
+{% if service.id is defined %}
+    "id": "{{ service.id }}",
+{% endif %}
+{% if service.tags is defined %}
+    "tags": [
+{% for tag in service.tags %}
+{% if not loop.last %}
+      "{{ tag }}",
+{% else %}
+      "{{ tag }}"
+{% endif %}
+{% endfor %}
+    ],
+{% endif %}
+{% if service.address is defined %}
+    "address": "{{ service.address }}",
+{% endif %}
+{% if service.port is defined %}
+    "port": {{ service.port }},
+{% endif %}
+{% if service.token is defined %}
+    "token": "{{ service.token }}",
+{% endif %}
+    "name": "{{ service.name }}"
+  }
+{% endif %}
+{% endfor %}
+{% endif %}
+}
