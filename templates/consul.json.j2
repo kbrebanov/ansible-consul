@@ -1,9 +1,107 @@
 {
-  "data_dir": "{{ consul_data_dir }}",
+{% if consul_acl_datacenter %}
+  "acl_datacenter": "{{ consul_acl_datacenter }}",
+{% endif %}
+  "acl_default_policy": "{{ consul_acl_default_policy }}",
+  "acl_down_policy": "{{ consul_acl_down_policy }}",
+{% if consul_acl_master_token %}
+  "acl_master_token": "{{ consul_acl_master_token }}",
+{% endif %}
+{% if consul_acl_token %}
+  "acl_token": "{{ consul_acl_token }}",
+{% endif %}
+  "acl_ttl": "{{ consul_acl_ttl }}",
+  "addresses": {
+    "dns": "{{ consul_addresses_dns }}",
+    "http": "{{ consul_addresses_http }}",
+    "https": "{{ consul_addresses_https }}",
+    "rpc": "{{ consul_addresses_rpc }}"
+  },
+{% if consul_advertise_addr %}
+  "advertise_addr": "{{ consul_advertise_addr }}",
+{% endif %}
+{% if consul_advertise_addr_wan %}
+  "advertise_addr_wan": "{{ consul_advertise_addr_wan }}",
+{% endif %}
 {% if consul_server %}
   "bootstrap_expect": {{ consul_bootstrap_expect }},
 {% endif %}
-{% if consul_server and consul_start_join %}
+  "bind_addr": "{{ consul_bind_addr }}",
+{% if consul_ca_file %}
+  "ca_file": "{{ consul_ca_file }}",
+{% endif %}
+{% if consul_cert_file %}
+  "cert_file": "{{ consul_cert_file }}",
+{% endif %}
+  "client_addr": "{{ consul_client_addr }}",
+  "check_update_interval": "{{ consul_check_update_interval }}",
+  "datacenter": "{{ consul_datacenter }}",
+{% if consul_disable_anonymous_signature %}
+  "disable_anonymous_signature": true,
+{% endif %}
+{% if consul_disable_remote_exec %}
+  "disable_remote_exec": true,
+{% endif %}
+{% if consul_disable_update_check %}
+  "disable_update_check": true,
+{% endif %}
+  "dns_config": {
+{% if consul_dns_config_allow_stale %}
+    "allow_stale": true,
+{% endif %}
+{% if consul_dns_enable_truncate %}
+    "enable_truncate": true,
+{% endif %}
+{% if consul_dns_only_passing %}
+    "only_passing": true,
+{% endif %}
+{% if consul_dns_service_ttl %}
+    "service_ttl": "{{ consul_dns_service_ttl }}",
+{% endif %}
+    "max_stale": "{{ consul_dns_config_max_stale }}",
+    "node_ttl": "{{ consul_dns_node_ttl }}"
+  },
+{% if consul_domain %}
+  "domain": "{{ consul_domain }}",
+{% endif %}
+{% if consul_enable_debug %}
+  "enable_debug": true,
+{% endif %}
+{% if consul_enable_syslog %}
+  "enable_syslog": true,
+{% endif %}
+{% if consul_key_file %}
+  "key_file": "{{ consul_key_file }}",
+{% endif %}
+{% if consul_leave_on_terminate %}
+  "leave_on_terminate": true,
+{% endif %}
+  "log_level": "{{ consul_log_level }}",
+{% if consul_node_name %}
+  "node_name": "{{ consul_node_name }}",
+{% endif %}
+  "ports": {
+    "dns": {{ consul_ports_dns }},
+    "http": {{ consul_ports_http }},
+    "https": {{ consul_ports_https }},
+    "rpc": {{ consul_ports_rpc }},
+    "serf_lan": {{ consul_ports_serf_lan }},
+    "serf_wan": {{ consul_ports_serf_wan }},
+    "server": {{ consul_ports_server }}
+  },
+{% if consul_server %}
+  "server": true,
+{% else %}
+  "server": false,
+{% endif %}
+{% if consul_server_name %}
+  "server_name": "{{ consul_server_name }}",
+{% endif %}
+  "session_ttl_min": "{{ consul_session_ttl_min }}",
+{% if consul_skip_leave_on_interrupt %}
+  "skip_leave_on_interrupt": true,
+{% endif %}
+{% if consul_start_join and consul_server %}
   "start_join": [
 {% for node_address in consul_start_join %}
 {% if not loop.last %}
@@ -14,12 +112,18 @@
 {% endfor %}
   ],
 {% endif %}
-{% if consul_webui %}
-  "ui_dir": "{{ consul_webui_install_dir }}/dist",
+{% if consul_statsd_addr %}
+  "statsd_addr": "{{ consul_statsd_addr }}",
 {% endif %}
-{% if consul_server %}
-  "server": true
-{% else %}
-  "server": false
+{% if consul_statsite_addr %}
+  "statsite_addr": "{{ consul_statsite_addr }}",
 {% endif %}
+  "statsite_prefix": "{{ consul_statsite_prefix }}",
+{% if consul_syslog_facility and consul_enable_syslog %}
+  "syslog_facility": "{{ consul_syslog_facility }}",
+{% endif %}
+{% if consul_ui_dir and consul_webui %}
+  "ui_dir": "{{ consul_ui_dir }}",
+{% endif %}
+  "data_dir": "{{ consul_data_dir }}"
 }
