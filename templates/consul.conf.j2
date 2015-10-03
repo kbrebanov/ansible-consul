@@ -1,0 +1,19 @@
+description "Service for consul"
+author "Kevin Brebanov"
+
+start on filesystem or runlevel [2345]
+stop on shutdown
+
+reload signal SIGHUP
+
+respawn
+respawn limit 10 10
+kill timeout 10
+
+script
+    exec start-stop-daemon --start --chuid {{ consul_user }} --group {{ consul_group }} --pidfile {{ consul_pid_file }} --make-pidfile --exec {{ consul_install_dir }}/consul -- agent -config-dir {{ consul_config_dir }} > {{ consul_log_file }} 2>&1
+end script
+
+post-stop script
+    rm -f {{ consul_pid_file }}
+end script

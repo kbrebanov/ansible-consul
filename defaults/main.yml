@@ -6,3 +6,5 @@ consul_sha256sum: 171cf4074bfca3b1e46112105738985783f19c47f4408377241b868affa9d4
 consul_webui: true
 consul_webui_version: 0.5.2
 consul_webui_sha256sum: ad883aa52e1c0136ab1492bbcedad1210235f26d59719fb6de3ef6464f1ff3b1
+consul_bootstrap_expect: 3
+consul_server: "false"

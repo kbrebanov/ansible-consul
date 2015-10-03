@@ -1,2 +1,10 @@
 ---
 # handlers file for consul
+
+- name: restart consul
+  service: name={{ consul_service_name }} state=restarted
+  tags: consul
+
+- name: reload consul
+  service: name={{ consul_service_name }} state=reloaded
+  tags: consul
