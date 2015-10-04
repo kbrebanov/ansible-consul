@@ -81,3 +81,4 @@ consul_verify_server_hostname: false
 
 consul_services: []
 consul_checks: []
+consul_watches: []

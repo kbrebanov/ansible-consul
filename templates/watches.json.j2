@@ -1,0 +1,85 @@
+{
+{% if consul_watches %}
+  "watches": [
+{% for watch in consul_watches %}
+{% if not loop.last %}
+    {
+{% if watch.datacenter is defined %}
+      "datacenter": "{{ watch.datacenter }}",
+{% endif %}
+{% if watch.token is defined %}
+      "token": "{{ watch.token }}",
+{% endif %}
+{% if watch.handler is defined %}
+      "handler": "{{ watch.handler }}",
+{% endif %}
+{% if watch.key is defined %}
+      "key": "{{ watch.key }}",
+{% endif %}
+{% if watch.keyprefix is defined %}
+      "keyprefix": "{{ watch.keyprefix }}",
+{% endif %}
+{% if watch.service is defined %}
+      "service": "{{ watch.service }}",
+{% endif %}
+{% if watch.tag is defined %}
+      "tag": "{{ watch.tag }}",
+{% endif %}
+{% if watch.passingonly is defined %}
+{% if watch.passingonly %}
+      "passingonly": true,
+{% else %}
+      "passingonly": false,
+{% endif %}
+{% endif %}
+{% if watch.state is defined %}
+      "state": "{{ watch.state }}",
+{% endif %}
+{% if watch.name is defined %}
+      "name": "{{ watch.name }}",
+{% endif %}
+      "type": "{{ watch.type }}"
+    },
+{% else %}
+    {
+{% if watch.datacenter is defined %}
+      "datacenter": "{{ watch.datacenter }}",
+{% endif %}
+{% if watch.token is defined %}
+      "token": "{{ watch.token }}",
+{% endif %}
+{% if watch.handler is defined %}
+      "handler": "{{ watch.handler }}",
+{% endif %}
+{% if watch.key is defined %}
+      "key": "{{ watch.key }}",
+{% endif %}
+{% if watch.keyprefix is defined %}
+      "keyprefix": "{{ watch.keyprefix }}",
+{% endif %}
+{% if watch.service is defined %}
+      "service": "{{ watch.service }}",
+{% endif %}
+{% if watch.tag is defined %}
+      "tag": "{{ watch.tag }}",
+{% endif %}
+{% if watch.passingonly is defined %}
+{% if watch.passingonly %}
+      "passingonly": true,
+{% else %}
+      "passingonly": false,
+{% endif %}
+{% endif %}
+{% if watch.state is defined %}
+      "state": "{{ watch.state }}",
+{% endif %}
+{% if watch.name is defined %}
+      "name": "{{ watch.name }}",
+{% endif %}
+      "type": "{{ watch.type }}"
+    }
+{% endif %}
+{% endfor %}
+  ]
+{% endif %}
+}

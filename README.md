@@ -91,6 +91,7 @@ Role Variables
 | consul_verify_server_hostname      | false                                                            | If set to true, Consul verifies for all outgoing connections that the TLS certificate presented by the servers matches "server.." hostname                                                         |
 | consul_services                    | []                                                               | List of service definitions                                                                                                                                                                        |
 | consul_checks                      | []                                                               | List of check definitions                                                                                                                                                                          |
+| consul_watches                     | []                                                               | List of watch definitions                                                                                                                                                                          |
 
 Dependencies
 ------------
@@ -150,6 +151,18 @@ Install Consul and configure a check
         http: "http://localhost"
         interval: "10s"
         timeout: "1s"
+  roles:
+    - kbrebanov.consul
+```
+
+Install Consul and configure a watch
+```
+- hosts: all
+  vars:
+    consul_watches:
+      - type: "service"
+        service: "redis"
+        handler: "/usr/bin/my-service-handler.sh"
   roles:
     - kbrebanov.consul
 ```
