@@ -3,7 +3,7 @@ consul
 
 [![Ansible Role](https://img.shields.io/ansible/role/3300.svg)](https://galaxy.ansible.com/list#/roles/3300)
 
-Installs Consul
+Installs and configures Consul
 
 Requirements
 ------------

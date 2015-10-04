@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Kevin Brebanov
-  description: Installs Consul
+  description: Installs and configures Consul
   company:
   # Some suggested licenses:
   # - BSD (default)
