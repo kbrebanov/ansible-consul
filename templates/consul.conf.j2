@@ -6,6 +6,8 @@ stop on shutdown
 
 reload signal SIGHUP
 
+env GOMAXPROCS={{ consul_gomaxprocs }}
+
 respawn
 respawn limit 10 10
 kill timeout 10
