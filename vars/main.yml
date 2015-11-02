@@ -1,8 +1,8 @@
 ---
 # vars file for consul
 
-consul_url: https://dl.bintray.com/mitchellh/consul/{{ consul_version }}_linux_amd64.zip
-consul_webui_url: https://dl.bintray.com/mitchellh/consul/{{ consul_webui_version }}_web_ui.zip
+consul_url: https://releases.hashicorp.com/consul/{{ consul_version }}/consul_{{ consul_version }}_linux_amd64.zip
+consul_webui_url: https://releases.hashicorp.com/consul/{{ consul_webui_version }}/consul_{{ consul_webui_version }}_web_ui.zip
 consul_download_dir: /root
 consul_install_dir: /usr/local/bin
 consul_config_dir: /etc/consul.d
