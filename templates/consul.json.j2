@@ -13,9 +13,11 @@
   "acl_ttl": "{{ consul_acl_ttl }}",
   "addresses": {
     "dns": "{{ consul_addresses_dns }}",
+{% if not consul_rpc_deprecated %}
+    "rpc": "{{ consul_addresses_rpc }}",
+{% endif %}
     "http": "{{ consul_addresses_http }}",
-    "https": "{{ consul_addresses_https }}",
-    "rpc": "{{ consul_addresses_rpc }}"
+    "https": "{{ consul_addresses_https }}"
   },
 {% if consul_advertise_addr %}
   "advertise_addr": "{{ consul_advertise_addr }}",
@@ -110,7 +112,9 @@
     "dns": {{ consul_ports_dns }},
     "http": {{ consul_ports_http }},
     "https": {{ consul_ports_https }},
+{% if not consul_rpc_deprecated %}
     "rpc": {{ consul_ports_rpc }},
+{% endif %}
     "serf_lan": {{ consul_ports_serf_lan }},
     "serf_wan": {{ consul_ports_serf_wan }},
     "server": {{ consul_ports_server }}
