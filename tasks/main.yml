@@ -58,6 +58,18 @@
     mode=0644
   notify: restart consul
   tags: consul
+  when: not (ansible_distribution == "Ubuntu" and ansible_distribution_version|int >= 16)
+
+- name: Create Consul systemd configuration
+  template: >
+    src=consul.systemd.j2
+    dest=/etc/systemd/system/consul.service
+    owner=root
+    group=root
+    mode=0644
+  notify: restart consul
+  tags: consul
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_version|int >= 16
 
 - name: Create Consul configuration file
   template: >
