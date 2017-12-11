@@ -1,0 +1,25 @@
+[Unit]
+Description=Service for consul
+After=network-online.target local-fs.target
+Requires=network-online.target
+Conflicts=shutdown.target
+
+[Service]
+User={{ consul_user }}
+Group={{ consul_group }}
+PIDFile={{ consul_pid_file }}
+PermissionsStartOnly=true
+Environment=GOMAXPROCS={{ consul_gomaxprocs }}
+ExecStartPre=/bin/sh -c 'touch {{ consul_log_file }} && chown {{ consul_user }}:{{ consul_group }} {{ consul_log_file }}'
+ExecStartPre=/bin/sh -c 'touch {{ consul_pid_file }} && chown {{ consul_user }}:{{ consul_group }} {{ consul_pid_file }}'
+ExecStart=/bin/sh -c '{{ consul_install_dir }}/consul agent -pid-file {{ consul_pid_file }} -config-dir {{ consul_config_dir }} >{{ consul_log_file }} 2>&1'
+ExecStopPost=/bin/rm -f {{ consul_pid_file }}
+KillMode=process
+KillSignal=SIGTERM
+TimeoutStopSec=10
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
